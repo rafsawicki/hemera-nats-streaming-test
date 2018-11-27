@@ -1,0 +1,24 @@
+{
+  "name": "hemera-nats-streaming-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently --killOthers \"npm:publisher\" \"npm:subscriber-*\"",
+    "publisher": "node publisher",
+    "subscriber-1": "node subscriber subscriber-1",
+    "subscriber-2": "node subscriber subscriber-2",
+    "subscriber-3": "node subscriber subscriber-3"
+  },
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": ">=8"
+  },
+  "dependencies": {
+    "concurrently": "^4.1.0",
+    "hemera-nats-streaming": "6.1.0",
+    "nats": "^1.0.1",
+    "nats-hemera": "5.8.9"
+  }
+}
