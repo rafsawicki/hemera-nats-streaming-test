@@ -1,6 +1,7 @@
 const Hemera = require('nats-hemera');
 const nats = require('nats').connect();
 const hemeraNatsStreaming = require('hemera-nats-streaming');
+const chalk = require('chalk');
 
 const subscriberName = process.argv[2];
 if (subscriberName == null) {
@@ -28,14 +29,13 @@ hemera.ready(() => {
 
   hemera.add({ topic: 'natss.user-created' }, (msg) => {
     const eventId = msg.data.message.eventId;
-    console.log(`Received an event with id ${eventId}`);
 
     if (receivedEventIds.has(eventId)) {
-      throw new Error(`Duplicate event with id ${eventId}`);
-    }
-
-    if (eventId > 1 && !receivedEventIds.has(eventId - 1)) {
-      throw new Error(`Missing event with id ${eventId - 1}`);
+      console.log(chalk.bold.red(`Received duplicate event with id ${eventId}`));
+    } else if (eventId > 1 && !receivedEventIds.has(eventId - 1)) {
+      console.log(chalk.bold.yellow(`Received an event with id ${eventId} but previous is missing`));
+    } else {
+      console.log(`Received an event with id ${eventId}`);
     }
 
     receivedEventIds.add(eventId);

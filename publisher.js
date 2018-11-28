@@ -15,7 +15,7 @@ hemera.use(hemeraNatsStreaming, {
 let eventId = 1;
 hemera.ready(() => {
   setInterval(async () => {
-    console.log('publisher: Publishing an event with id', eventId);
+    console.log('\npublisher: Publishing an event with id', eventId);
     await hemera.act({
       topic: 'natss',
       cmd: 'publish',
