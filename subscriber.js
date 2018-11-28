@@ -33,7 +33,7 @@ hemera.ready(() => {
     if (receivedEventIds.has(eventId)) {
       console.log(chalk.bold.red(`Received duplicate event with id ${eventId}`));
     } else if (eventId > 1 && !receivedEventIds.has(eventId - 1)) {
-      console.log(chalk.bold.yellow(`Received an event with id ${eventId} but previous is missing`));
+      console.log(chalk.yellow(`Received an event with id ${eventId} but previous is missing`));
     } else {
       console.log(`Received an event with id ${eventId}`);
     }
